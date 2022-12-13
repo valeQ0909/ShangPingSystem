@@ -20,20 +20,22 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Map<String, String> getToken(String username, String password){
+        //通过security库的固定写法，在数据库内校验账号和密码是否正确
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-
         Authentication authenticate = authenticationManager.authenticate(authenticationToken); //登录失败会自动处理
 
+        //框架固定写法创建user对象，返回数据库内相应账号的信息
         UserDetailsImpl loginUser = (UserDetailsImpl) authenticate.getPrincipal();
-
         User user = loginUser.getUser();
 
+        // 创建jwt令牌（jwt的配置由钱宸组长负责），jwt令牌将存放在用户浏览器的localstorage内，用来确认用户是否登录
         String jwt = JwtUtil.createJWT(user.getUsername());
-
+        // 通过Map存储将要返回的信息
         Map<String, String> map = new HashMap<>();
-        map.put("error_message", "success");
-        map.put("token", jwt);
+        map.put("error_message", "success");  //将成功的信息返回给前端
+        map.put("token", jwt);  //将令牌返回给前端
 
+        //将信息返回给前端
         return map;
     }
 
