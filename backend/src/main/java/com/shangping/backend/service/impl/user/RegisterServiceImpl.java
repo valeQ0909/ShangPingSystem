@@ -80,9 +80,10 @@ public class RegisterServiceImpl implements RegisterService {
         //将明文密码进行md5(md5是一种不可逆的加密算法)加密，保护用户的隐私安全
         String encodedPassword = passwordEncoder.encode(password);
         String photo = "https://cdn.acwing.com/media/user/profile/photo/81680_lg_6a90272086.jpg";
-        String nickname = "用户" + username.toString();
+        String nickname = "用户" + username;
+
         // 创建新用户，并添加至数据库
-        User user = new User(null,username, nickname, encodedPassword, identity, photo);
+        User user = new User(null, username, nickname, encodedPassword, identity, photo);
         userMapper.insert(user);
         map.put("code", "200");
         map.put("error_message", "success");

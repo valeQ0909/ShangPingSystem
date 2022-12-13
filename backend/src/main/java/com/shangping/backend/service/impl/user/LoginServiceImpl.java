@@ -29,7 +29,7 @@ public class LoginServiceImpl implements LoginService {
         User user = loginUser.getUser();
 
         // 创建jwt令牌（jwt的配置由钱宸组长负责），jwt令牌将存放在用户浏览器的localstorage内，用来确认用户是否登录
-        String jwt = JwtUtil.createJWT(user.getUsername());
+        String jwt = JwtUtil.createJWT(user.getId().toString());
         // 通过Map存储将要返回的信息
         Map<String, String> map = new HashMap<>();
         map.put("error_message", "success");  //将成功的信息返回给前端
