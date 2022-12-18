@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from '../router';
 
 export default {
     state:{
@@ -6,6 +7,7 @@ export default {
         username: "",
         photo: "",
         token: "",
+        identity: "",
         is_login: false,
         pulling_info:true,   // 是否正在云端拉取信息
     },
@@ -14,9 +16,10 @@ export default {
     },
     mutations:{
         updateUser(state, user) {
-            state.id = user.id;
-            state.username = user.username;
-            state.photo = user.photo;
+            state.id = user.data.id;
+            state.username = user.data.username;
+            state.photo = user.data.photo;
+            state.identity = user.data.identity;
             state.is_login = user.is_login;
         },
         updateToken(state, token) {
@@ -26,6 +29,7 @@ export default {
             state.id = "";
             state.username = "";
             state.photo = "";
+            state.identity = "";
             state.token = "";
             state.is_login = false;
         },
@@ -34,7 +38,6 @@ export default {
         }
     },
     actions:{
-      
         // 获取信息
         getinfo(context, data){
           axios({
@@ -88,6 +91,7 @@ export default {
         logout(context) {
             localStorage.removeItem("jwt_token");
             context.commit("logout");
+            router.push({name: "login_index" });
         },
 
 

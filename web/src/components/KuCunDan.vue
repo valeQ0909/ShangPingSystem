@@ -1,15 +1,24 @@
 <template>
     <div class="allpage">
-        <div class="name item">名称</div>
-        <div class="current_quantity item">现有数量</div>
-        <div class="quantity_limit item">最低数量限制</div>
-        <div class="purchaser item">采购人</div>
-        <div class="purchase_time item">采购时间</div>
+        <div class="name item">{{name}}</div>
+        <div class="current_quantity item">{{quantity}}</div>
+        <div class="quantity_limit item">{{prize}}</div>
+        <div class="purchaser item">{{qgp}}</div>
+        <div class="purchase_time item">{{purchase_time}}</div>
+        <div class="buyer item">{{buyer}}</div>
+        <div class="supplier item">{{supplier}}</div>
+        <div class="unit item">{{unit}}</div>
+        <div class="describe item">{{describe}}</div>
     </div>
 </template>
 
 <script>
+export default{
+    props:['name','quantity', 'price', 'qgp', 'purchase_time', 'buyer', 'supplier', 'unit', 'describe'],
+    setup(){
 
+    }
+}
 </script>
 
 <style scoped>

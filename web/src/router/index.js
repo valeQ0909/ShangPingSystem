@@ -5,7 +5,9 @@ import RegisterIndexView from "../views/LoginRegister/RegisterIndexView.vue"
 import HomeIndexView from '../views/home/HomeIndexView'
 import KucunIndexView from "../views/kucun/KucunIndexView.vue"
 import DinghuoIndexView from "../views/dinghuo/DinghuoIndexView.vue"
-
+import CaiGouIndexView from "../views/caigou/CaiGouIndexView.vue"
+import CaiWuAIndexView from "../views/caiwubaoxiaoA/CaiWuAIndexView"
+import CaiWuBindexView from "../views/caiwubaoxiaoB/CaiWuBIndexView"
 
 import NotFound from '../views/error/NotFound'
 import store from '../store'
@@ -48,6 +50,30 @@ const routes = [
     path: "/dinghuo/",
     name: 'dinghuo_index',
     component: DinghuoIndexView,
+    meta:{
+      requestAuth: true,
+    }
+  },
+  {
+    path:"/caigou/",
+    name:'caigou_index',
+    component:CaiGouIndexView,
+    meta:{
+      requestAuth: true,
+    }
+  },
+  {
+    path:"/caiwua/",
+    name:'caiwua_index',
+    component:CaiWuAIndexView,
+    meta:{
+      requestAuth: true,
+    }
+  },
+  {
+    path:"/caiwub/",
+    name:'caiwub_index',
+    component:CaiWuBindexView,
     meta:{
       requestAuth: true,
     }

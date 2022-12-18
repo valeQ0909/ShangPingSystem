@@ -6,9 +6,7 @@ export default createStore({
       currentpage:"",
     },
     mutations: {
-      updatecurrentpage(state, currentpage){
-        state.currentpage = currentpage
-      }
+
     },
     actions: {
     },

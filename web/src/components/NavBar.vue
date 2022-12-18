@@ -15,20 +15,44 @@
         </div>
 
        
-        <router-link to="/kucun/" @click="changeColor1" class="item1 item">库存</router-link>
+        <router-link to="/kucun/"  class="item1 item" v-if="identity === '管理员'">库存</router-link>
   
-        <router-link to="/dinghuo/" @click="changeColor2" class="item2 item">订货</router-link>
+        <router-link to="/dinghuo/" class="item2 item" v-if="identity === '管理员'">订货</router-link>
 
-        <div class="avatar">
+        <router-link to="/caigou/" class="item1 item" v-if="identity === '采购员'">采购</router-link>
+  
+        <router-link to="/caiwua/" class="item2 item" v-if="identity === '采购员'">报销</router-link>
+
+        <router-link to="/caiwub/" class="item1 item" v-if="identity === '财务员'">财务报销</router-link>
+  
+        <div class="avatar"  @mouseover="avatarshowshortcut" @mouseleave="avatarhideshortcut">
             <img src="../assets/images/avatar.png" alt="avatar"/>
         </div>
 
     </div>
+
+    <!--头像功能区-->
+    <div class="userpower" @mouseover="powershowshortcut" @mouseleave="powerhideshortcut" v-if="showpower">
+       <div class="mypersonalpage selection">
+         <router-link replace to="/kucun">
+         <p>我的主页</p>
+         </router-link>
+       </div>
+       <div class="changeinformation selection">
+         <router-link replace to="/dinghuo">
+         <p>修改个人信息</p>
+         </router-link>
+       </div>
+       <div class="logout selection" >
+         <p @click="logout">退出登录</p>
+       </div>
+     </div>
+
   </template>
   
 <script>
 console.log("乘风好去，长空万里，直下看山河。\n斫去桂婆娑，人道是、清光更多。\n                   -- 辛弃疾");
-import { reactive} from "vue"
+import {ref, reactive } from "vue"
 import { useStore } from 'vuex';
 import { useRouter } from "vue-router";
 
@@ -36,8 +60,6 @@ export default {
     setup(){
         const store = useStore();
         const router = useRouter();
-        const currentpage = router.currentRoute.value.name;
-        store.commit("updatecurrentpage", currentpage);
 
         const theme1 = reactive({
             color: 'rgb(141, 139, 139)'
@@ -46,26 +68,61 @@ export default {
             color: 'rgb(141, 139, 139)'
         });
 
-        if (store.state.currentpage === "kucun_index"){
-            theme1.color = "white"
-        }
-        else if(store.state.currentpage === "dinghuo_index"){
-            theme2.color = "white"
+        let onpower = ref(false);
+        onpower.value = false;
+        let showpower = ref(false);
+        showpower.value = false;
+        let onavatar = ref(false);
+        onavatar.value = false;
+        const avatarshowshortcut = () => {
+            onavatar.value = true;
+            showpower.value = true;
+        };
+        const avatarhideshortcut = () => {
+            onavatar.value = false;
+        };
+        const powershowshortcut = () =>{
+            onpower.value = true;
+        };
+        
+        const powerhideshortcut = () =>{
+            onpower.value = false;
+            showpower.value = false;
+ 
+        };
+
+        const logout = () => {
+          store.dispatch("logout");
         }
 
-        const changeColor1 = ()=>{
-            theme1.color = "white"
-            theme2.color = "rgb(141, 139, 139)"
-        };
-        const changeColor2 = ()=>{
-            theme2.color="white"
-            theme1.color="rgb(141, 139, 139)"
-        };
+        let identity = ref();
+        let currentpage = ref();
+        setInterval(() => {
+            identity.value =  store.state.user.identity
+            currentpage.value = router.currentRoute.value.name;
+            if (currentpage.value === "kucun_index" || currentpage.value === "caigou_index" || currentpage.value === "caiwub_index"){
+                theme1.color = "white"
+                theme2.color = "rgb(141, 139, 139)"
+            }
+            else if(currentpage.value === "dinghuo_index" || currentpage.value === "caiwua_index"){
+                theme2.color = "white"
+                theme1.color = "rgb(141, 139, 139)"
+            }
+        }, 10);
+        
         return {
             theme1,
             theme2,
-            changeColor1,
-            changeColor2,
+            onpower,
+            onavatar,
+            showpower,
+            identity,
+            currentpage,
+            avatarshowshortcut,
+            avatarhideshortcut,
+            powershowshortcut,
+            powerhideshortcut,
+            logout,
        };
     },
 
@@ -166,6 +223,39 @@ a {
 .container .avatar img{
     width: 100%;
     height: 100%;
+}
+
+
+.userpower{
+  background-color: #eaeaea;
+  height: 150px;
+  width: 100px;
+  z-index: 111;
+  position: fixed;
+  right: 55px;
+}
+
+.userpower p{
+  text-align: center;
+  font-size: 14px;
+}
+
+.userpower .mypersonalpage{
+ margin-top: 20px;
+}
+
+.userpower .changeinformation{
+  margin-top: 10px;
+}
+
+.userpower .logout{
+  cursor: pointer;  /*鼠标悬停变小手*/
+  margin-top: 10px;
+}
+
+.userpower .selection:hover{
+  border-radius: 30px;
+  background-color: rgb(172, 182, 182);
 }
 </style>
 

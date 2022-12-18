@@ -79,8 +79,17 @@ export default {
           store.commit("updateToken", jwt_token);
           store.dispatch("getinfo", {
               success(){
-                  router.push({name:"home"});
-                  store.commit("updatePullingInfo", false);
+                if(store.state.user.identity === "管理员"){
+                  router.push({name: "kucun_index" });
+                }
+                else if(store.state.user.identity === "采购员"){
+                  router.push({name: "caigou_index" });
+                }
+                else{
+                  router.push({name: "caiwub_index" });
+                }
+                  
+                store.commit("updatePullingInfo", false);
               },
               error(){
                   store.commit("updatePullingInfo", false);
@@ -96,10 +105,18 @@ export default {
                 username: username.value,
                 password: password.value,
                 success() {
-                    console.log("成功了")
                     store.dispatch("getinfo", {
                         success() {
-                            router.push({name: "home" });
+                            if(store.state.user.identity === "管理员"){
+                              router.push({name: "kucun_index" });
+                            }
+                            else if(store.state.user.identity === "采购员"){
+                              router.push({name: "caigou_index" });
+                            }
+                            else{
+                              router.push({name: "caiwub_index" });
+                            }
+                            
                         },
                         error(){
                         

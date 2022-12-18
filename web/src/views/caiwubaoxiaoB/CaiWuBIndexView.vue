@@ -1,28 +1,26 @@
 <template>
     <div class="allpage">
-        <div class="platform">
-            <KuCunDan ></KuCunDan>
-        </div>
+        <div class="err">财务人员财务报销。。。。。。还在施工当中</div>
     </div>
 </template>
 
 <script>
-import KuCunDan from "../../components/KuCunDan.vue"
 import { useRouter } from "vue-router";
 import { useStore } from 'vuex';
-
 export default{
-    components: {
-        KuCunDan
-    },
 
+    components: {
+
+    },
     setup() {
         const router = useRouter();
         const store = useStore();
         const currentpage = router.currentRoute.value.name;
         store.commit("updatecurrentpage", currentpage);
+
     }
 }
+
 </script>
 
 <style scoped>
@@ -30,13 +28,11 @@ export default{
     height: 60vh;
     width: 100%;
 }
-
-.platform{
+.allpage .err{
+    font-size: 50px;
+    color: white;
+    margin-top: 20vh;
     margin-left: 20vw;
-    height: 60vh;
-    width: 51vw;
-    background-color: rgba(118,234,211, 0.5);
-    margin-top: 10vh;
 }
 
 </style>
