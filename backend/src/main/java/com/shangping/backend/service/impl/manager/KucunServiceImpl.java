@@ -26,6 +26,7 @@ public class KucunServiceImpl implements KucunService {
             item.put("name", stock.getName());
             item.put("quantity", stock.getQuantity());
             item.put("price", stock.getPrice());
+
             // 格式化日期
             SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
             String strqgp = format.format(stock.getQgp());

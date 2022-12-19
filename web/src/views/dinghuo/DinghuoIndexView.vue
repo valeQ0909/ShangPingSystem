@@ -38,7 +38,9 @@
 
 <script>
 import DingHuoDan from "../../components/DingHuoDan.vue"
-import {ref, reactive} from "vue"
+import {ref} from "vue"
+import axios from "axios"
+import store from "../../store"
 export default{
     components: {
         DingHuoDan
@@ -50,32 +52,69 @@ export default{
         let buyer = ref("")
         let deadline = ref("")
         let error_msg = ref("")
-        const dinghuolist = reactive([
+        const dinghuolist = ref([
             {
                 id:0,
                 goods_name:"旺旺雪饼",
                 quantity: 2000,
                 unit:"袋",
                 buyer:"002",
-                deadline:"2022年12月23日",
-                state: "待采购",
+                deadline:"2022-12-13 16:01:30",
             }
         ])
+
+        const caigou = () =>{
+            axios({
+              headers: {
+                Authorization:"Bearer " + store.state.user.token,
+              },
+              method: "GET",
+              url: "http://127.0.0.1:3000/buyer/caigou/",
+            }).then((resp)=>{
+                if(resp.data.error_message === "success") {
+                    console.log("caigou: ", resp);
+                    dinghuolist.value = resp.data.caigou;
+                }
+            });
+        }
 
         const caigourenwu = ()=>{
             if(goodsName.value === "" ||quantity.value === "" ||unit.value === ""||buyer.value === ""||deadline.value=== ""){
                 error_msg.value = "请将采购内容填写完整"
             }
             else{
-                goodsName.value = "";
-                quantity.value = "";
-                unit.value = "";
-                buyer.value = "";
-                deadline.value = "";
-                console.log("成功发布任务")
+                axios({
+                    header:{
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    method: 'POST',
+                    url: "http://127.0.0.1:3000/manager/dinghuo/",
+                    data: {
+                        'name': goodsName.value,
+                        'quantity': quantity.value,
+                        'unit': unit.value,
+                        'buyer': buyer.value,
+                        'deadline': deadline.value,
+                    }
+                    }).then(response => {
+                        if(response.data.code == 200){
+                            caigou();
+                            console.log("resp: ", response)
+                            console.log("发布任务成功")
+                        }
+                        else{
+                            console.log("发布失败")
+                        }
+                    });
+                    goodsName.value = "";
+                    quantity.value = "";
+                    unit.value = "";
+                    buyer.value = "";
+                    deadline.value = "";
             }
-
         }
+
+        caigou();
 
         return{
             dinghuolist,
@@ -85,8 +124,8 @@ export default{
             buyer,
             deadline,
             error_msg,
+            caigou,
             caigourenwu,
-            
         }
     }
 }
