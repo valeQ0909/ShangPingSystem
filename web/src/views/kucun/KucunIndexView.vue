@@ -36,7 +36,7 @@ export default{
         let kucunlist = ref([
             {
                 id:0,
-                name:"旺旺雪饼",
+                name:"旺旺摇滚动",
                 quantity:2000,
                 price:2,
                 unit:"元/袋",
@@ -48,7 +48,7 @@ export default{
             },
             {
                 id:1,
-                name:"旺旺小小酥",
+                name:"旺旺沙琪玛",
                 quantity:2000,
                 price:3,
                 unit:"元/袋",

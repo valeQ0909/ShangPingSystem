@@ -15,9 +15,9 @@
         </div>
 
        
-        <router-link to="/kucun/"  class="item1 item" v-if="identity === '管理员'">库存</router-link>
+        <router-link to="/kucun/"  class="item1 item" >库存</router-link>
   
-        <router-link to="/dinghuo/" class="item2 item" v-if="identity === '管理员'">订货</router-link>
+        <router-link to="/dinghuo/" class="item2 item" >订货</router-link>
 
         <router-link to="/caigou/" class="item1 item" v-if="identity === '采购员'">采购</router-link>
   
