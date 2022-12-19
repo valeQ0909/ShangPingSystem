@@ -1,6 +1,6 @@
 package com.shangping.backend.config.filter;
 
-import com.shangping.backend.mapper.UserMapper;
+import com.shangping.backend.pojo.mapper.UserMapper;
 import com.shangping.backend.pojo.User;
 import com.shangping.backend.service.impl.utils.UserDetailsImpl;
 import com.shangping.backend.utils.JwtUtil;
@@ -28,7 +28,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull FilterChain filterChain) throws ServletException, IOException {
         String token = request.getHeader("Authorization");
 
-        System.out.println("token: " + token);
         if (!StringUtils.hasText(token) || !token.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
@@ -44,8 +43,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        System.out.println("userId: "+  userid);
 
         User user = userMapper.selectById(Integer.parseInt(userid));
 

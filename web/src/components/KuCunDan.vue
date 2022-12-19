@@ -1,13 +1,13 @@
 <template>
-    <div class="allpage">
+    <div class="kucundan">
         <div class="name item">{{name}}</div>
-        <div class="current_quantity item">{{quantity}}</div>
-        <div class="quantity_limit item">{{prize}}</div>
-        <div class="purchaser item">{{qgp}}</div>
+        <div class="quantity item">{{quantity}}</div>
+        <div class="price item">{{price}}</div>
+        <div class="unit item">{{unit}}</div>
+        <div class="qgp item">{{qgp}}</div>
         <div class="purchase_time item">{{purchase_time}}</div>
         <div class="buyer item">{{buyer}}</div>
         <div class="supplier item">{{supplier}}</div>
-        <div class="unit item">{{unit}}</div>
         <div class="describe item">{{describe}}</div>
     </div>
 </template>
@@ -22,17 +22,14 @@ export default{
 </script>
 
 <style scoped>
-.allpage{
+.kucundan{
     justify-content: center; 
     align-items: center; 
 }
-.allpage .item{
+.kucundan .item{
     text-align:center; 
     line-height:5vh;
     font-size: 20px;
-}
-.allpage .name{
-    margin-left: 0.3vw;
 
     height: 5vh;
     width: 10vw;
@@ -40,38 +37,13 @@ export default{
     border-width: 0.5px;
     border-style: solid;
 }
-.allpage .current_quantity{
-    float: left;
-    border-width: 0.5px;
-    border-style: solid;
-    border-left: 0;
-    height: 5vh;
-    width: 10vw;
+.kucundan .name{
+    margin-left: 5vw;
 }
-.allpage .quantity_limit{
-    float: left;
-    border-width: 0.5px;
-    border-style: solid;
-    border-left: 0;
-    height: 5vh;
-    width: 10vw;
+.kucundan .qgp{
+    font-size: 15px;
 }
-
-.allpage .purchaser{
-    float: left;
-    border-width: 0.5px;
-    border-style: solid;
-    border-left: 0;
-    height: 5vh;
-    width: 10vw;
+.kucundan .purchase_time{
+    font-size: 15px;
 }
-.allpage .purchase_time{
-    float: left;
-    border-width: 0.5px;
-    border-style: solid;
-    border-left: 0;
-    height: 5vh;
-    width: 10vw;
-}
-
 </style>
