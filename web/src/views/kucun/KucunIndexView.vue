@@ -26,8 +26,6 @@
 <script>
 import { ref } from "vue";
 import KuCunDan from "../../components/KuCunDan.vue"
-import axios from "axios";
-import store from "../../store";
 
 export default{
     components: {
@@ -35,54 +33,35 @@ export default{
     },
 
     setup() {
-        let kucunlist = ref([])
-            // {
-            //     id:0,
-            //     name:"旺旺雪饼",
-            //     quantity:2000,
-            //     price:2,
-            //     unit:"元/袋",
-            //     qgp:"2023年12月24日",
-            //     purchase_time:"2022年12月5日",
-            //     buyer:"002",
-            //     supplier:"湖南长兴县",
-            //     describe:"无"
-            // },
-            // {
-            //     id:1,
-            //     name:"旺旺小小酥",
-            //     quantity:2000,
-            //     price:3,
-            //     unit:"元/袋",
-            //     qgp:"2023年12月24日",
-            //     purchase_time:"2022年12月5日",
-            //     buyer:"002",
-            //     supplier:"湖南长兴县",
-            //     describe:"无"
-            // },
-        
-        const getkucun = () =>{
-            console.log("hhhhhhh")
-            axios({
-              headers: {
-                Authorization:"Bearer " + store.state.user.token,
-              },
-              method: "GET",
-              url: "http://127.0.0.1:3000/manager/kucun/",
-            }).then((resp)=>{
-                if(resp.data.error_message === "success") {
-                    kucunlist.value = resp.data.stocks;
+        let kucunlist = ref([
+            {
+                id:0,
+                name:"旺旺雪饼",
+                quantity:2000,
+                price:2,
+                unit:"元/袋",
+                qgp:"2023年12月24日",
+                purchase_time:"2022年12月5日",
+                buyer:"002",
+                supplier:"湖南长兴县",
+                describe:"无"
+            },
+            {
+                id:1,
+                name:"旺旺小小酥",
+                quantity:2000,
+                price:3,
+                unit:"元/袋",
+                qgp:"2023年12月24日",
+                purchase_time:"2022年12月5日",
+                buyer:"002",
+                supplier:"湖南长兴县",
+                describe:"无"
+            },
+            ])
 
-                }
-          });
-        }
-
-        getkucun();
-
-        console.log("hhh: ", kucunlist)
         return{
             kucunlist,
-            getkucun,
         }
     },
 
