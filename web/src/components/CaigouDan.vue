@@ -5,14 +5,30 @@
         <div class="quantity item">{{quantity}}</div>
         <div class="unit item">{{unit}}</div>
         <div class="deadline item">{{deadline}}</div>
-        <div class="state item">{{state}}</div>
+        <div class="state item" @click="details">{{state}}</div>
     </div>
 </template>
 
 <script>
+import { useRouter } from "vue-router";
+
 export default{
-    props:['goods_name','delivery_time','quantity','unit','buyer','deadline', 'state'],
-    setup(){
+    props:['goods_name','delivery_time','quantity','unit','buyer','deadline', 'state', 'caigou_id'],
+    setup(props){
+        const router = useRouter();
+
+        const details = () =>{
+            router.push({
+                name: 'caigoudetails_index',
+                query:{
+                    id:props.caigou_id,
+                }
+            });
+        }
+
+        return{
+            details,
+        }
 
     }
 }

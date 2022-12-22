@@ -13,6 +13,7 @@
                                          :unit="m.unit" 
                                          :deadline="m.deadline"
                                          :state="m.state"
+                                         :caigou_id="m.caigou_id"
         ></CaigouDan>
     </div>
 </template>
@@ -39,7 +40,6 @@ export default{
               url: "http://127.0.0.1:3000/buyer/caigou/",
             }).then((resp)=>{
                 if(resp.data.error_message === "success") {
-                    console.log("caigou: ", resp);
                     caigoulist.value = resp.data.caigou;
                 }
             });

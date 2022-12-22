@@ -28,6 +28,7 @@ public class CaigouServiceImpl implements CaigouService {
             item.put("goods_name", dinghuo.getGoodsName());
             item.put("state", dinghuo.getState());
             item.put("unit", dinghuo.getUnit());
+            item.put("caigou_id",dinghuo.getId());
 
             // 格式化日期
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

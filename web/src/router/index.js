@@ -6,6 +6,7 @@ import HomeIndexView from '../views/home/HomeIndexView'
 import KucunIndexView from "../views/kucun/KucunIndexView.vue"
 import DinghuoIndexView from "../views/dinghuo/DinghuoIndexView.vue"
 import CaiGouIndexView from "../views/caigou/CaiGouIndexView.vue"
+import CaigoudetailsIndexView from "../views/caigoudetails/CaigoudetailsIndexView.vue"
 import CaiWuAIndexView from "../views/caiwubaoxiaoA/CaiWuAIndexView"
 import CaiWuBindexView from "../views/caiwubaoxiaoB/CaiWuBIndexView"
 
@@ -58,6 +59,15 @@ const routes = [
     path:"/caigou/",
     name:'caigou_index',
     component:CaiGouIndexView,
+    meta:{
+      requestAuth: true,
+    }
+  },
+  {
+    path:"/caigoudetails",
+    name:'caigoudetails_index',
+    component: CaigoudetailsIndexView,
+    props: true,
     meta:{
       requestAuth: true,
     }
