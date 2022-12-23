@@ -3,15 +3,14 @@ package com.shangping.backend.service.impl.buyer;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.shangping.backend.pojo.Dinghuo;
 import com.shangping.backend.pojo.Stock;
-import com.shangping.backend.pojo.mapper.DinghuoMapper;
-import com.shangping.backend.pojo.mapper.StockMapper;
+import com.shangping.backend.mapper.DinghuoMapper;
+import com.shangping.backend.mapper.StockMapper;
 import com.shangping.backend.service.buyer.CaigoufinishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service

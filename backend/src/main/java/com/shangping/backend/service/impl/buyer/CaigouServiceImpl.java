@@ -2,7 +2,7 @@ package com.shangping.backend.service.impl.buyer;
 
 import com.alibaba.fastjson.JSONObject;
 import com.shangping.backend.pojo.Dinghuo;
-import com.shangping.backend.pojo.mapper.DinghuoMapper;
+import com.shangping.backend.mapper.DinghuoMapper;
 import com.shangping.backend.service.buyer.CaigouService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +43,6 @@ public class CaigouServiceImpl implements CaigouService {
         resp.put("error_message", "success");
         resp.put("caigou", items);
         resp.put("caigou_count", dinghuoMapper.selectCount(null));
-        System.out.println("caigou: " + resp);
         return resp;
     }
 }

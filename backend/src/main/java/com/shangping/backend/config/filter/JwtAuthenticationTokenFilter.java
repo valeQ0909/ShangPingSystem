@@ -1,6 +1,6 @@
 package com.shangping.backend.config.filter;
 
-import com.shangping.backend.pojo.mapper.UserMapper;
+import com.shangping.backend.mapper.UserMapper;
 import com.shangping.backend.pojo.User;
 import com.shangping.backend.service.impl.utils.UserDetailsImpl;
 import com.shangping.backend.utils.JwtUtil;

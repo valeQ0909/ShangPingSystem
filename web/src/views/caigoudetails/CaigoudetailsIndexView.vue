@@ -1,6 +1,6 @@
 <template>
     <div class="allpage">
-        <div>采购任务详情</div>
+        <div class="title">采购任务详情</div>
         <div class="delivery_time item">发布时间</div>
         <div class="goods_name item">商品名称</div>
         <div class="quantity item">数量</div>
@@ -135,6 +135,12 @@ export default{
     width: 100%;
     background-color: rgba(118,234,211, 0.5);
 }
+
+.allpage .title{
+    text-align:center; 
+    line-height:5vh;
+    font-size: 20px;
+}
 .allpage .item{
     text-align:center; 
     line-height:5vh;
@@ -184,7 +190,7 @@ export default{
     background-color: #69de21;
 }
 .allpage .subbmit:hover{
-    color: rgba(138, 143, 255, 0.4);
+    background-color: rgba(37, 252, 177, 0.4);
 }
 
 .allpage .error_msg{

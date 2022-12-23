@@ -1,4 +1,4 @@
-package com.shangping.backend.pojo.mapper;
+package com.shangping.backend.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.shangping.backend.pojo.User;

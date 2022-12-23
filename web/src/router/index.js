@@ -9,6 +9,8 @@ import CaiGouIndexView from "../views/caigou/CaiGouIndexView.vue"
 import CaigoudetailsIndexView from "../views/caigoudetails/CaigoudetailsIndexView.vue"
 import CaiWuAIndexView from "../views/caiwubaoxiaoA/CaiWuAIndexView"
 import CaiWuBindexView from "../views/caiwubaoxiaoB/CaiWuBIndexView"
+import BillIndexView from "../views/bill/BillIndexView.vue"
+import BaoxiaodetailsView from "../views/baoxiaodetails/BaoxiaodetailsIndexView.vue"
 
 import NotFound from '../views/error/NotFound'
 import store from '../store'
@@ -84,6 +86,22 @@ const routes = [
     path:"/caiwub/",
     name:'caiwub_index',
     component:CaiWuBindexView,
+    meta:{
+      requestAuth: true,
+    }
+  },
+  {
+    path:"/baoxiaodetails/",
+    name:'baoxiaodetails_index',
+    component:BaoxiaodetailsView,
+    meta:{
+      requestAuth: true,
+    }
+  },
+  {
+    path:"/bill/",
+    name:"bill_index",
+    component:BillIndexView,
     meta:{
       requestAuth: true,
     }

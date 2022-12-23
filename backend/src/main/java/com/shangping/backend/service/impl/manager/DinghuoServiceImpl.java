@@ -1,7 +1,7 @@
 package com.shangping.backend.service.impl.manager;
 
 import com.shangping.backend.pojo.Dinghuo;
-import com.shangping.backend.pojo.mapper.DinghuoMapper;
+import com.shangping.backend.mapper.DinghuoMapper;
 import com.shangping.backend.service.manager.DinghuoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

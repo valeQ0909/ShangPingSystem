@@ -1,5 +1,7 @@
 package com.shangping.backend.service.buyer;
 
-public interface CaiwuaService {
+import java.util.Map;
 
+public interface CaiwuaService {
+    public Map<String, String> caiwu(String buyer, String billurl);
 }

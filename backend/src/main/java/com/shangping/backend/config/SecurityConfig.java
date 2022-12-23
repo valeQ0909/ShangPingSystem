@@ -42,7 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         "/user/register/",
                                         "/manager/dinghuo/",
                                         "/buyer/caigoudetails/",
-                                        "/buyer/caigoufinish/"
+                                        "/buyer/caigoufinish/",
+                                        "/buyer/caiwu/",
+                                        "/buyer/getbill/",
+                                        "/finance/getInvoiceInfo/",
+                                        "/finance/baoxiaoPass/",
+                                        "/finance/baoxiaoUnpass",
+                                        "/finance/getReimbursement/"
                             ).permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated();

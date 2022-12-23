@@ -1,7 +1,7 @@
 package com.shangping.backend.service.impl.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.shangping.backend.pojo.mapper.UserMapper;
+import com.shangping.backend.mapper.UserMapper;
 import com.shangping.backend.pojo.User;
 import com.shangping.backend.service.user.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;

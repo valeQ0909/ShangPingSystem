@@ -60,4 +60,12 @@ export default{
     font-size: 15px;
 }
 
+.dinghuodan .state{
+    cursor: pointer;
+}
+
+.dinghuodan .state:hover{
+    background-color: rgba(37, 252, 177, 0.4);
+}
+
 </style>

@@ -2,7 +2,7 @@ package com.shangping.backend.service.impl.manager;
 
 import com.alibaba.fastjson.JSONObject;
 import com.shangping.backend.pojo.Stock;
-import com.shangping.backend.pojo.mapper.StockMapper;
+import com.shangping.backend.mapper.StockMapper;
 import com.shangping.backend.service.manager.KucunService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

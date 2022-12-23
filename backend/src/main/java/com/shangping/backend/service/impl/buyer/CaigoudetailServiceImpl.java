@@ -2,7 +2,7 @@ package com.shangping.backend.service.impl.buyer;
 
 import com.alibaba.fastjson.JSONObject;
 import com.shangping.backend.pojo.Dinghuo;
-import com.shangping.backend.pojo.mapper.DinghuoMapper;
+import com.shangping.backend.mapper.DinghuoMapper;
 import com.shangping.backend.service.buyer.CaigoudetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
