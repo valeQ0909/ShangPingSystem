@@ -19,8 +19,9 @@ public class DinghuoServiceImpl implements DinghuoService {
         Map<String, String> map = new HashMap<>();
 
         Date now = new Date();// 获取当前时间
-        System.out.println("name: "+name+" delivery_time: "+now+" quantity: "+quantity+" deadline: "+deadline +" buyer: "+buyer+" unit: "+unit);
+        // 创建新的dinghuo记录
         Dinghuo dinghuo = new Dinghuo(null,now, name, quantity, deadline,buyer,unit, "待采购");
+        // 将该记录插入数据库中
         dinghuoMapper.insert(dinghuo);
 
         map.put("code", "200");

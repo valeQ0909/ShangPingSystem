@@ -18,10 +18,18 @@ public class KucunServiceImpl implements KucunService {
     private StockMapper stockMapper;
     @Override
     public JSONObject getkucun() {
-        List<Stock> list = stockMapper.selectList(null);
+        //需要返回给前端的总Json对象
         JSONObject resp = new JSONObject();
+
+        // 创建一个Json列表，用于包装需要返回的所有库存信息
         List<JSONObject> items = new LinkedList<>();
+
+        // 在数据库内查询所有库存信息，返回一个列表
+        List<Stock> list = stockMapper.selectList(null);
+
+        // 循环列表内的每一条库存记录，取出具体值，先包裹成item，再添加到items中
         for(Stock stock : list){
+            // 创建Json对象item存储当前一条的库存记录信息
             JSONObject item = new JSONObject();
             item.put("name", stock.getName());
             item.put("quantity", stock.getQuantity());
@@ -37,6 +45,8 @@ public class KucunServiceImpl implements KucunService {
             item.put("supplier", stock.getSupplier());
             item.put("describe", stock.getDescribeInfo());
             item.put("unit", stock.getUnit());
+
+            // 最后将当前的item添加到总的items中
             items.add(item);
         }
 
