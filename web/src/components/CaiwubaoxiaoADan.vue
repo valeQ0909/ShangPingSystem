@@ -1,19 +1,23 @@
 <template>
+
     <div class="fapiao">
         <div class="caiwu_id item1">{{invoice_id}}</div>
         <img  class="caiwu_bill" alt="caiwu_bill" :src="invoice_bill" @click="bill">
         <div class="caiwu_state item1">{{invoice_state}}</div>
     </div>
+
 </template>
 
 <script>
 import router from '../router';
+
 export default{
     props:['invoice_id', "invoice_bill", 'invoice_state'],
+
     setup(props){
 
         const bill = () =>{
-            localStorage.setItem("imgStr", props.invoice_bill);  //localStorage.setItem的增和改的写法是一摸一样的
+            localStorage.setItem("imgStr", props.invoice_bill);  //invoice_bill就是图片地址
             router.push({name: "bill_index" })
         }
 
@@ -22,6 +26,8 @@ export default{
         }
     }
 }
+
+
 </script>
 
 <style scoped>

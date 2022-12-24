@@ -6,6 +6,7 @@
         <div class="unit item">单位</div>
         <div class="deadline item">截止时间</div>
         <div class="state item">采购状态</div>
+        
         <CaigouDan v-for="m in caigoulist" :key="m.id" 
                                          :delivery_time="m.delivery_time"
                                          :goods_name="m.goods_name" 
@@ -15,6 +16,8 @@
                                          :state="m.state"
                                          :caigou_id="m.caigou_id"
         ></CaigouDan>
+
+
     </div>
 </template>
 
@@ -27,6 +30,7 @@ export default{
         CaigouDan
     },
     setup() {
+        
         let caigoulist = ref([
             {
                 buyer: "002",
@@ -47,6 +51,26 @@ export default{
                 quantity: 300,
                 state: "待采购",
                 unit:"斤",
+            },
+            {
+                buyer: "004",
+                caigou_id: 2,
+                deadline: "2023-12-20 00:10:48",
+                delivery_time: "2022-12-21 00:10:33",
+                goods_name: "旺旺碎冰冰",
+                quantity: 300,
+                state: "待采购",
+                unit:"袋",
+            },
+            {
+                buyer: "004",
+                caigou_id: 2,
+                deadline: "2023-12-20 00:10:48",
+                delivery_time: "2022-12-21 00:10:33",
+                goods_name: "冰淇淋",
+                quantity: 300,
+                state: "待采购",
+                unit:"袋",
             },
         ])
 

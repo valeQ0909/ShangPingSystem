@@ -11,12 +11,11 @@
         >
         </CaiwubaoxiaoADan>
 
-        <form>
         <div class="input billurl" >
             <input v-model="billurl" placeholder="发票链接" type="text" />
         </div>
+
         <div class="input subbmit" @click="subbmitbill">提交</div>
-        </form>
         
         <div class="error_msg">{{error_msg}}</div>
         
@@ -31,9 +30,12 @@ export default{
     components: {
         CaiwubaoxiaoADan
     },
+
     setup() {
         let billurl = ref("")  //用于接收输入框内的输入内容
+
         let error_msg = ref("")
+
         let billlist = ref([
             {
                 bill_id: 2,
@@ -128,7 +130,6 @@ export default{
 .caiwu .subbmit:hover{
     color: rgba(138, 143, 255, 0.4);
 }
-
 
 .caiwu .error_msg{
     float: left;
