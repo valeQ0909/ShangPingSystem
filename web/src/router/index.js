@@ -11,6 +11,7 @@ import CaiWuAIndexView from "../views/caiwubaoxiaoA/CaiWuAIndexView"
 import CaiWuBindexView from "../views/caiwubaoxiaoB/CaiWuBIndexView"
 import BillIndexView from "../views/bill/BillIndexView.vue"
 import BaoxiaodetailsView from "../views/baoxiaodetails/BaoxiaodetailsIndexView.vue"
+import PersonalpageView from "../views/personalpage/PersonalpageIndexView.vue"
 
 import NotFound from '../views/error/NotFound'
 import store from '../store'
@@ -102,6 +103,14 @@ const routes = [
     path:"/bill/",
     name:"bill_index",
     component:BillIndexView,
+    meta:{
+      requestAuth: true,
+    }
+  },
+  {
+    path:"/personalpage/",
+    name:"personalpage_index",
+    component:PersonalpageView,
     meta:{
       requestAuth: true,
     }

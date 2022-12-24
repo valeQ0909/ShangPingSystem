@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/user/token/",
                                         "/user/register/",
+                                        "/user/updateInfo/",
                                         "/manager/dinghuo/",
                                         "/buyer/caigoudetails/",
                                         "/buyer/caigoufinish/",

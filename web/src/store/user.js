@@ -5,6 +5,7 @@ export default {
     state:{
         id: "",
         username: "",
+        nickname:"",
         photo: "",
         token: "",
         identity: "",
@@ -18,6 +19,7 @@ export default {
         updateUser(state, user) {
             state.id = user.data.id;
             state.username = user.data.username;
+            state.nickname = user.data.nickname;
             state.photo = user.data.photo;
             state.identity = user.data.identity;
             state.is_login = user.is_login;

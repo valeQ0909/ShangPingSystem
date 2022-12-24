@@ -26,20 +26,15 @@
         <router-link to="/caiwub/" class="item1 item" v-if="identity === '财务员'">财务报销</router-link>
   
         <div class="avatar"  @mouseover="avatarshowshortcut" @mouseleave="avatarhideshortcut">
-            <img src="../assets/images/avatar.png" alt="avatar"/>
+            <img :src="avatarUrl" alt="avatar"/>
         </div>
 
     </div>
 
     <!--头像功能区-->
     <div class="userpower" @mouseover="powershowshortcut" @mouseleave="powerhideshortcut" v-if="showpower">
-       <div class="mypersonalpage selection">
-         <router-link replace to="/kucun">
-         <p>我的主页</p>
-         </router-link>
-       </div>
        <div class="changeinformation selection">
-         <router-link replace to="/dinghuo">
+         <router-link replace to="/personalpage/">
          <p>修改个人信息</p>
          </router-link>
        </div>
@@ -59,6 +54,8 @@ export default {
     setup(){
         const store = useStore();
         const router = useRouter();
+
+        let avatarUrl = ref("")
 
         const theme1 = reactive({
             color: 'rgb(141, 139, 139)'
@@ -98,7 +95,8 @@ export default {
         let currentpage = ref();
         setInterval(() => {
             identity.value =  store.state.user.identity
-            currentpage.value = router.currentRoute.value.name;
+            currentpage.value = router.currentRoute.value.name
+            avatarUrl.value = store.state.user.photo
             if (currentpage.value === "kucun_index" || currentpage.value === "caigou_index" || currentpage.value === "caiwub_index"){
                 theme1.color = "white"
                 theme2.color = "rgb(141, 139, 139)"
@@ -110,6 +108,7 @@ export default {
         }, 10);
         
         return {
+            avatarUrl,
             theme1,
             theme2,
             onpower,
@@ -227,11 +226,11 @@ a {
 
 .userpower{
   background-color: #eaeaea;
-  height: 150px;
+  height: 100px;
   width: 100px;
   z-index: 111;
   position: fixed;
-  right: 55px;
+  right: 50px;
 }
 
 .userpower p{
@@ -239,17 +238,13 @@ a {
   font-size: 14px;
 }
 
-.userpower .mypersonalpage{
- margin-top: 20px;
-}
-
 .userpower .changeinformation{
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .userpower .logout{
   cursor: pointer;  /*鼠标悬停变小手*/
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .userpower .selection:hover{
