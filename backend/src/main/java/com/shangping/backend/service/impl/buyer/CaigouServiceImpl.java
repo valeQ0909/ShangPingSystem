@@ -1,10 +1,15 @@
 package com.shangping.backend.service.impl.buyer;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.shangping.backend.pojo.Dinghuo;
 import com.shangping.backend.mapper.DinghuoMapper;
+import com.shangping.backend.pojo.User;
 import com.shangping.backend.service.buyer.CaigouService;
+import com.shangping.backend.service.impl.utils.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -18,9 +23,25 @@ public class CaigouServiceImpl implements CaigouService {
 
     @Override
     public JSONObject getcaigou() {
-        List<Dinghuo> list = dinghuoMapper.selectList(null);
+        // 采购员在采购任务页面展示所有和他有关的采购任务功能
+
+        // 通过token令牌获取该采购员的username
+        UsernamePasswordAuthenticationToken authentication =
+                (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+
+        UserDetailsImpl loginUser = (UserDetailsImpl) authentication.getPrincipal();
+        User user = loginUser.getUser();
+        String buyer = user.getUsername();
+
+        // 创建查询条件
+        QueryWrapper queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("buyer", buyer);
+
+        // 在dinghuo表中查询所有和该采购员有关的记录
+        List<Dinghuo> list = dinghuoMapper.selectList(queryWrapper);
         JSONObject resp = new JSONObject();
         List<JSONObject> items = new LinkedList<>();
+        // 取出每一条记录，进行加工
         for(Dinghuo dinghuo : list){
             JSONObject item = new JSONObject();
             item.put("buyer", dinghuo.getBuyer());
@@ -42,7 +63,7 @@ public class CaigouServiceImpl implements CaigouService {
 
         resp.put("error_message", "success");
         resp.put("caigou", items);
-        resp.put("caigou_count", dinghuoMapper.selectCount(null));
+        resp.put("caigou_count", dinghuoMapper.selectCount(queryWrapper));
         return resp;
     }
 }

@@ -16,8 +16,9 @@ public class CaigoudetailServiceImpl implements CaigoudetailService {
 
     @Override
     public JSONObject caigoudetail(Integer caigou_id) {
-        Dinghuo dinghuo = dinghuoMapper.selectById(caigou_id);
 
+        // 在dinghuo数据表内查询该订货记录，并返回该记录所对应的所有信息
+        Dinghuo dinghuo = dinghuoMapper.selectById(caigou_id);
         JSONObject resp = new JSONObject();
         resp.put("buyer", dinghuo.getBuyer());
         resp.put("quantity", dinghuo.getQuantity());

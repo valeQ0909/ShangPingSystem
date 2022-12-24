@@ -69,11 +69,11 @@ export default{
                 Authorization:"Bearer " + store.state.user.token,
               },
               method: "GET",
-              url: "http://127.0.0.1:3000/buyer/caigou/",
+              url: "http://127.0.0.1:3000/manager/getDinghuo/",
             }).then((resp)=>{
                 if(resp.data.error_message === "success") {
                     console.log("caigou: ", resp);
-                    dinghuolist.value = resp.data.caigou;
+                    dinghuolist.value = resp.data.dinghuo;
                 }
             });
         }

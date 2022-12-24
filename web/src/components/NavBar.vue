@@ -97,6 +97,9 @@ export default {
             identity.value =  store.state.user.identity
             currentpage.value = router.currentRoute.value.name
             avatarUrl.value = store.state.user.photo
+            if(avatarUrl.value == ""){
+                avatarUrl.value = "https://img.zcool.cn/community/017ead5e4e965ba80121651885b6e2.jpg@1280w_1l_2o_100sh.jpg" ; 
+            }
             if (currentpage.value === "kucun_index" || currentpage.value === "caigou_index" || currentpage.value === "caiwub_index"){
                 theme1.color = "white"
                 theme2.color = "rgb(141, 139, 139)"
