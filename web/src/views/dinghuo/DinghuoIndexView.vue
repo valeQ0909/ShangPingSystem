@@ -34,6 +34,7 @@
         </form>
         <div class="error_msg">{{error_msg}}</div>
     </div>
+    
 </template>
 
 <script>

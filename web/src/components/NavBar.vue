@@ -14,11 +14,6 @@
             </span>
         </div>
 
-       
-        <router-link to="/kucun/"  class="item1 item" >库存</router-link>
-  
-        <router-link to="/dinghuo/" class="item2 item" >订货</router-link>
-
         <router-link to="/caigou/" class="item3 item">采购</router-link>
   
         <router-link to="/caiwua/" class="item4 item">报销</router-link>
@@ -173,21 +168,6 @@ a {
     margin-top: 3vh;
 }
 
-.container .item1{
-    cursor: pointer;
-    float: left;
-    margin-top: 2vh;
-    color: v-bind('theme1.color');
-    font-size: 4vh;
-}
-.container .item2{
-    cursor: pointer;  
-    float: left;
-    margin-left: 5vw;
-    margin-top: 2vh;
-    color: v-bind('theme2.color');;
-    font-size: 4vh;
-}
 .container .item3{
     cursor: pointer;  
     float: left;
