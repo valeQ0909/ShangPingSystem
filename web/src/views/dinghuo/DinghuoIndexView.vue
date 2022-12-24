@@ -52,12 +52,28 @@ export default{
         let error_msg = ref("")
         const dinghuolist = reactive([
             {
-                id:0,
                 goods_name:"旺旺雪饼",
                 quantity: 2000,
                 unit:"袋",
                 buyer:"002",
-                deadline:"2022年12月23日",
+                deadline:"2022-12-21 00:10:33",
+                state: "待采购",
+            },
+            {
+
+                goods_name:"旺旺小小酥",
+                quantity: 2000,
+                unit:"袋",
+                buyer:"002",
+                deadline:"2022-12-21 00:10:33",
+                state: "待采购",
+            },
+            {
+                goods_name:"旺旺摇滚冻",
+                quantity: 2000,
+                unit:"袋",
+                buyer:"002",
+                deadline:"2022-12-21 00:10:33",
                 state: "待采购",
             }
         ])

@@ -6,6 +6,7 @@ import DinghuoIndexView from "../views/dinghuo/DinghuoIndexView.vue"
 import CaiGouIndexView from "../views/caigou/CaiGouIndexView.vue"
 import CaiWuAIndexView from "../views/caiwubaoxiaoA/CaiWuAIndexView"
 import CaiWuBindexView from "../views/caiwubaoxiaoB/CaiWuBIndexView"
+import BillIndexView from "../views/bill/BillIndexView.vue"
 
 import NotFound from '../views/error/NotFound'
 const routes = [
@@ -47,6 +48,11 @@ const routes = [
     name:'caiwub_index',
     component:CaiWuBindexView,
 
+  },
+  {
+    path:"/bill/",
+    name:"bill_index",
+    component:BillIndexView,
   },
   {
     path: "/404/",
