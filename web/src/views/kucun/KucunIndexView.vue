@@ -9,6 +9,7 @@
         <div class="buyer item">采购员</div>
         <div class="supplier item">供应商</div>
         <div class="describe item">描述</div>
+        
         <KuCunDan v-for="m in kucunlist" :key="m.id"
                                             :name="m.name"
                                             :quantity="m.quantity"
@@ -20,6 +21,8 @@
                                             :supplier="m.supplier"
                                             :describe="m.describe"
         ></KuCunDan>
+
+
     </div>
 </template>
 
@@ -33,9 +36,10 @@ export default{
     },
 
     setup() {
-        let kucunlist = ref([
+
+
+        let kucunlist = ref([   //一个kucunlist列表 kucunlist[1]
             {
-                id:0,
                 name:"旺仔摇滚冻",
                 quantity:2000,
                 price:2,
@@ -47,7 +51,6 @@ export default{
                 describe:"无"
             },
             {
-                id:1,
                 name:"旺旺小小酥",
                 quantity:2000,
                 price:3,
@@ -58,15 +61,29 @@ export default{
                 supplier:"湖南长兴县",
                 describe:"无"
             },
+            {
+                name:"旺旺小小酥",
+                quantity:2000,
+                price:1,
+                unit:"元/袋",
+                qgp:"2023年12月24日",
+                purchase_time:"2022年12月5日",
+                buyer:"002",
+                supplier:"湖南长兴县",
+                describe:"无"
+            },
             ])
+
 
         return{
             kucunlist,
         }
+
     },
 
 }
 </script>
+
 
 <style scoped>
 .platform{

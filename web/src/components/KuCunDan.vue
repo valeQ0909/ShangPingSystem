@@ -21,6 +21,8 @@ export default{
 }
 </script>
 
+
+
 <style scoped>
 .kucundan{
     justify-content: center; 
@@ -34,6 +36,7 @@ export default{
     height: 5vh;
     width: 10vw;
     float: left;
+    
     border-width: 0.5px;
     border-style: solid;
 }

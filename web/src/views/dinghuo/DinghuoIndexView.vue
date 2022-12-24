@@ -6,6 +6,7 @@
         <div class="buyer item">采购员</div>
         <div class="deadline item">截止时间</div>
         <div class="state item">采购状态</div>
+
         <DingHuoDan v-for="m in dinghuolist" :key="m.id" 
                                          :goods_name="m.goods_name" 
                                          :quantity="m.quantity" 
@@ -14,7 +15,8 @@
                                          :deadline="m.deadline"
                                          :state="m.state"
         ></DingHuoDan>
-        <form>
+
+
         <div id="in_name" class="input name" >
             <input v-model="goodsName" placeholder="商品名称" type="text" />
         </div>
@@ -30,27 +32,34 @@
         <div id="in_deadline" class="input" >
             <input v-model="deadline" placeholder="截止时间" type="text" />
         </div>
+
         <div class="input subbmit" @click="caigourenwu">提交</div>
-        </form>
+
         <div class="error_msg">{{error_msg}}</div>
+
     </div>
 </template>
 
 <script>
 import DingHuoDan from "../../components/DingHuoDan.vue"
 import {ref, reactive} from "vue"
+
 export default{
     components: {
         DingHuoDan
     },
+
     setup() {
+
         let goodsName = ref("")
         let quantity = ref("")
         let unit = ref("")
         let buyer = ref("")
         let deadline = ref("")
+
         let error_msg = ref("")
-        const dinghuolist = reactive([
+
+        let dinghuolist = reactive([
             {
                 goods_name:"旺旺雪饼",
                 quantity: 2000,
@@ -78,11 +87,15 @@ export default{
             }
         ])
 
+        // 采购任务函数
         const caigourenwu = ()=>{
+
             if(goodsName.value === "" ||quantity.value === "" ||unit.value === ""||buyer.value === ""||deadline.value=== ""){
+                // 如果没填写完整，则修改报错信息error_msg的值，并在html文件中展示该报错信息
                 error_msg.value = "请将采购内容填写完整"
             }
             else{
+                // 如果都填写了，则执行后续逻辑
                 goodsName.value = "";
                 quantity.value = "";
                 unit.value = "";
@@ -90,7 +103,6 @@ export default{
                 deadline.value = "";
                 console.log("成功发布任务")
             }
-
         }
 
         return{
@@ -102,7 +114,6 @@ export default{
             deadline,
             error_msg,
             caigourenwu,
-            
         }
     }
 }
@@ -159,7 +170,7 @@ export default{
 }
 
 .allpage .subbmit{
-    cursor: pointer;
+    cursor: pointer;  /*鼠标放上去显示小手 */
     background-color: #69de21;
 }
 .allpage .subbmit:hover{
