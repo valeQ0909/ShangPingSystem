@@ -15,6 +15,8 @@
                                          :state="m.state"
                                          :caigou_id="m.caigou_id"
         ></CaigouDan>
+
+
     </div>
 </template>
 
@@ -25,12 +27,13 @@ import axios from "axios";
 import store from "../../store";
 
 export default{
-
-    components: {
+ 
+    components: {  
         CaigouDan
     },
     setup() {
         let caigoulist = ref([])
+        
         const caigou = () =>{
             axios({
               headers: {
@@ -41,6 +44,7 @@ export default{
             }).then((resp)=>{
                 if(resp.data.error_message === "success") {
                     caigoulist.value = resp.data.caigou;
+                    console.log("caigoulist", resp.data.caigou)
                 }
             });
         }

@@ -21,6 +21,11 @@
           <router-link id="forget" replace to="/login" class="input">
             <p>已有账户？点击登录</p>
           </router-link>
+          <select class="identity" v-model="identity" @change="hhh">
+            <option class="item" value="manager">管理员</option>
+            <option class="item" value="buyer">采购员</option>
+            <option class="item" value="finance">财务员</option>
+          </select>
 
           <button @click="register" type="button">注册</button>
         </form>
@@ -33,16 +38,28 @@
 <script>
 import axios from "axios";
 import router from '../../router'
+import { ref } from "vue";
+
 
 export default {
-    setup(){
 
-      function check(str){
+    setup(){
+      let identity = ref("manager")
+      let username = ref("")
+      let password_1 = ref("")
+      let password_2 = ref("")
+
+      const hhh = () => {
+        console.log(identity.value)
+      }
+
+      const check = (str) => {
           if(str.length < 3 || str.length >10){
             alert("账号建议使用3-12位的阿拉伯数字")
             return false;
           }
-          if (this.account === '' || this.password_1 === '' || this.password_2 === ''){
+
+          if (username.value === '' || password_1.value === '' || password_2.value === ''){
             alert("账号或密码不能为空")
             return false;
           }
@@ -56,51 +73,67 @@ export default {
           return true;
       }
 
-      function register(){
-
+      const register = () => {
         let state = false;
-        console.log("测试", this.username)
-        state = this.check(this.username);
-        console.log("状态", state)
+        state = check(username.value);
+        console.log("身份:", identity.value)
 
         if(state){
-          console.log("username", this.username)
-          console.log("password_1", this.password_1)
-          console.log("password_2", this.password_2)
+          console.log("username", username.value);
+          console.log("password_1", password_1.value);
+          console.log("password_2", password_2.value);
 
-        axios({
-            header:{
-              'Content-Type':'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: "http://127.0.0.1:3000/user/register/",
-            data: {
-                'username': this.username,
-                'password': this.password_1,
-                'confirmedPassword': this.password_2,
-                'identity': "管理员",
-            }
-            }).then(response => {
-                if(response.data.code == 200){
+          let identityStr = "";
+          identityStr = "管理员";
+
+          if(identity.value === "manager"){
+            identityStr = "管理员";
+          }
+          else if(identity.value === "buyer"){
+            identityStr = "采购员"
+          }
+          else if(identity.value === "finance"){
+            identityStr = "财务员"
+          }
+
+          console.log(identityStr);
+
+          axios({
+              header:{
+                'Content-Type':'application/x-www-form-urlencoded'
+              },
+              method: 'POST',
+              url: "http://127.0.0.1:3000/user/register/",
+              data: {
+                  'username': username.value,
+                  'password': password_1.value,
+                  'confirmedPassword': password_2.value,
+                  'identity': identityStr,
+              }
+              }).then(response => {
+                  if(response.data.code == 200){
+                      console.log(response)
+                      router.push({name:"home_index"});
+                  }
+                  else{
+                    username.value = "";
+                    password_1.value = "";
+                    password_2.value = "";
                     console.log(response)
-                    router.push({name:"home_index"});
-                }
-                else{
-                  this.username = "";
-                  this.password = "";
-                  console.log(response)
-                }
-            });
-        }
+                  }
+              });
+          }
 
       }
 
       return{
-        username: '',
-        password_1:'',
-        password_2:'',
+        username,
+        password_1,
+        password_2,
+        identity,
         check,
         register,
+        hhh,
       }
 
     }
@@ -216,6 +249,17 @@ form .input#userName {
 form .input#password {
   height: 2rem;
 }
+
+form .identity{
+  cursor: pointer;
+
+  margin-top: 2rem;
+  margin-left: 3rem;
+  width: 5rem;
+  height: 2rem;
+
+}
+
 
 form button {
   display: block;

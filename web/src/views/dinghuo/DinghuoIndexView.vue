@@ -72,7 +72,7 @@ export default{
               url: "http://127.0.0.1:3000/manager/getDinghuo/",
             }).then((resp)=>{
                 if(resp.data.error_message === "success") {
-                    console.log("caigou: ", resp);
+                    console.log("caigou: ", resp.data.dinghuo);
                     dinghuolist.value = resp.data.dinghuo;
                 }
             });

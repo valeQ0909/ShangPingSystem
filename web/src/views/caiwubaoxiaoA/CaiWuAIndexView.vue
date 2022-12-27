@@ -51,12 +51,11 @@ export default{
                 }
                 }).then(resp => {
                     if(resp.data.code == 200){
-                        console.log(resp)
+                        console.log("billlist: ",resp.data.bill)
                         billlist.value = resp.data.bill
-                        console.log("发布任务成功")
                     }
                     else{
-                        console.log("发布失败")
+                        console.log("获取信息失败")
                     }
                 });
         }
