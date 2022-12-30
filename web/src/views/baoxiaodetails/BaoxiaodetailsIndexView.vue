@@ -14,6 +14,7 @@
         <div class="input submit_pass" @click="submitpass">审核通过</div>
         <div class="input submit_unpass" @click="submitunpass">审核不通过</div>
         </form>
+
         <div class="error_msg">{{error_msg}}</div>
         
         <img class="reimbursement" v-if="reimbursementurl != ''" :src="reimbursementurl">
@@ -61,7 +62,13 @@ export default{
 
         // 审核通过
         const submitpass = () =>{
-            if(billurl.value === ""){
+            if(invoiceList.value[0].state === "审核合格"){
+                error_msg.value = "该报销任务已审核合格"
+            }
+            else if(invoiceList.value[0].state === "审核不合格"){
+                error_msg.value = "该报销任务已审核不合格"
+            }
+            else if(billurl.value === ""){
                 error_msg.value = "请输入报销单据链接"
             }
             else {
@@ -77,6 +84,7 @@ export default{
                         'staff': store.state.user.username
                     }
                     }).then(resp => {
+                        invoiceList.value.pop();
                         getInvoiceInfo(); //更新报销任务状态
                         getReimbursement(); //显示报销单据
                         console.log(resp)
@@ -88,19 +96,29 @@ export default{
 
         // 审核不通过
         const submitunpass = () =>{
-            axios({
-                header:{
-                    'Content-Type':'application/x-www-form-urlencoded'
-                },
-                method: 'POST',
-                url: "http://127.0.0.1:3000/finance/baoxiaoUnpass/",
-                data: {
-                    'invoice_id': invoice_id,
-                }
-                }).then(resp => {
-                    getInvoiceInfo(); //更新报销任务状态
-                    console.log(resp)
+            if(invoiceList.value[0].state === "审核合格"){
+                error_msg.value = "该报销任务已审核合格"
+            }
+            else if(invoiceList.value[0].state === "审核不合格"){
+                error_msg.value = "该报销任务已审核不合格"
+            }
+            else{
+                axios({
+                    header:{
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    method: 'POST',
+                    url: "http://127.0.0.1:3000/finance/baoxiaoUnpass/",
+                    data: {
+                        'invoice_id': invoice_id,
+                    }
+                    }).then(resp => {
+                        invoiceList.value.pop();
+                        getInvoiceInfo(); //更新报销任务状态
+                        console.log(resp)
                 });
+            }
+
         }
 
         // 检查是否有该报销记录的报销单据
@@ -245,6 +263,7 @@ export default{
 
 .baoxiao .error_msg{
     margin-left: 40vw;
+    padding-top: 30vh;
     font-size: 20px;
     color: red;
 }

@@ -48,7 +48,7 @@
           <p>
             <router-link id="signUp" replace to="/register" class="input"
               >注册</router-link
-            >>
+            >
             <span>|</span>
             <a id="forget" href="/index/Retrieve" class="input">忘记密码？</a>
           </p>

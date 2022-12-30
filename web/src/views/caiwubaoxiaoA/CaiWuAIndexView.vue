@@ -61,26 +61,33 @@ export default{
         }
 
         const subbmitbill = () =>{
-            axios({
-                header:{
-                    'Content-Type':'application/x-www-form-urlencoded'
-                },
-                method: 'POST',
-                url: "http://127.0.0.1:3000/buyer/caiwu/",
-                data: {
-                    'billurl': billurl.value,
-                    'buyer': store.state.user.username,
-                }
-                }).then(resp => {
-                    if(resp.data.code == 200){
-                        billurl.value = ""
-                        getbill();
-                        console.log("发布任务成功")
+            if(billurl.value === ''){
+                error_msg.value = "请填写发票单据链接"
+            }
+            else {
+                axios({
+                    header:{
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    method: 'POST',
+                    url: "http://127.0.0.1:3000/buyer/caiwu/",
+                    data: {
+                        'billurl': billurl.value,
+                        'buyer': store.state.user.username,
                     }
-                    else{
-                        console.log("发布失败")
-                    }
+                    }).then(resp => {
+                        if(resp.data.code == 200){
+                            billurl.value = ""
+                            getbill();
+                            console.log("发布任务成功")
+                        }
+                        else{
+                            console.log("发布失败")
+                        }
                 });
+            }
+
+
         }
 
         getbill();
@@ -165,6 +172,7 @@ export default{
 
 .caiwu .error_msg{
     margin-left: 40vw;
+    float: left;
     font-size: 20px;
     color: red;
 }

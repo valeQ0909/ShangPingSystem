@@ -55,10 +55,8 @@ export default{
         let qgp = ref("")
         let describe_info = ref("")
         let error_msg = ref("")
-        const router = useRouter();
-        console.log('router',router.currentRoute.value.name)
-        console.log("parms", router.currentRoute.value)
 
+        const router = useRouter();
 
         let caigou_id = router.currentRoute.value.query.id
         const caigou = () =>{
@@ -81,6 +79,9 @@ export default{
         const caigourenwu = ()=>{
             if(price.value === "" ||supplier.value === "" ||qgp.value === ""||describe_info.value === ""){
                 error_msg.value = "请将采购内容填写完整"
+            }
+            else if(caigoulist.value[0].state === "完成采购"){
+                error_msg.value = "该采购任务已完成"
             }
             else{
                 axios({
@@ -195,6 +196,7 @@ export default{
 
 .allpage .error_msg{
     margin-left: 40vw;
+    float: left;
     font-size: 20px;
     color: red;
 }

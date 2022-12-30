@@ -59,7 +59,19 @@ export default{
                     'nickname':newnickname.value,
                 }
                 }).then(resp => {
+                    store.dispatch("getinfo",{
+                        success(){
+                            imgStr.value = store.state.user.photo
+                            identity.value = store.state.user.identity
+                            nickname.value = store.state.user.nickname
+                            store.commit("updatePullingInfo", false);
+                        },
+                        error(){
+                            store.commit("updatePullingInfo", false);
+                        }
+                    })
                     console.log(resp)
+
                 });
             newavatar.value = ""
             newnickname.value = ""

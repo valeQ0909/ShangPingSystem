@@ -15,15 +15,20 @@ public class GetReimbursementServiceImpl implements GetReimbursementService {
 
     @Override
     public JSONObject getReimbursement(Integer invoice_id) {
+        // 这部分查询具体的报销单据的信息
+
         JSONObject resp = new JSONObject();
+
+        // 根据发票id在报销单据表中查询相应的报销单据
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("invoice_id", invoice_id);
         Reimbursement reimbursement = reimbursementMapper.selectOne(queryWrapper);
-        if(reimbursement != null) {
+
+        if(reimbursement != null) { // 如果查到了，返回具体报销单据的图片链接
             String reimbursementUrl = reimbursement.getRBill();
             resp.put("code", 200);
             resp.put("reimbursementUrl", reimbursementUrl);
-        }else{
+        }else{ // 如果没查到，返回报错状态码，并返回报错信息
             resp.put("code", 300);
             resp.put("error_message","未查找到相关报销单据");
         }

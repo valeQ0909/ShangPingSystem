@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         "/buyer/getbill/",
                                         "/finance/getInvoiceInfo/",
                                         "/finance/baoxiaoPass/",
-                                        "/finance/baoxiaoUnpass",
+                                        "/finance/baoxiaoUnpass/",
                                         "/finance/getReimbursement/"
                             ).permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()

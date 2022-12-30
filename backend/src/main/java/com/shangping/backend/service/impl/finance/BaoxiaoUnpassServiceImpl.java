@@ -16,6 +16,8 @@ public class BaoxiaoUnpassServiceImpl implements BaoxiaoUnpassService {
 
     @Override
     public Map<String, String> baoxiaoUnpass(Integer invoice_id) {
+        // 这部分负责提交发票后审核不通过的功能
+
         Map<String, String> map = new HashMap<>();
 
         // 修改采购人员财务报销状态未审核不合格

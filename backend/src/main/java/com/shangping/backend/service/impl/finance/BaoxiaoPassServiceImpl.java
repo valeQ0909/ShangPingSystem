@@ -22,6 +22,8 @@ public class BaoxiaoPassServiceImpl implements BaoxiaoPassService {
 
     @Override
     public Map<String, String> baoxiaoPass(Integer invoice_id, String billurl, String staff) {
+        // 这部分负责提交发票后审核通过的功能
+
         Map<String, String> map = new HashMap<>();
 
         // 增加报销记录

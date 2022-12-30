@@ -18,6 +18,7 @@ public class GetallbillServiceImpl implements GetallbillService {
 
     @Override
     public JSONObject getallbill() {
+        // 这部分获取所有的报销任务列表
         List<Invoice> list = invoiceMapper.selectList(null);
         JSONObject resp = new JSONObject();
         List<JSONObject> items = new LinkedList<>();

@@ -14,7 +14,11 @@ public class GetInvoiceInfoServiceImpl implements GetInvoiceInfoService {
 
     @Override
     public JSONObject getInvoiceInfo(Integer invoice_id) {
+        // 这部分获取具体的发票信息
+
+        // 根据传递进来的发票id进行详细查询
         Invoice invoice = invoiceMapper.selectById(invoice_id);
+        // 包装查询到的数据并返回给前端
         JSONObject resp = new JSONObject();
         resp.put("invoice_id", invoice.getId());
         resp.put("invoice_bill", invoice.getInvoiceBill());
